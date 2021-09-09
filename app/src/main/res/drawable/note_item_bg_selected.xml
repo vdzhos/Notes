@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/white"/>
+    <stroke android:width="@dimen/note_item_selected_border_stroke_width" android:color="@color/black"/>
+    <corners android:radius="@dimen/note_item_border_radius"/>
+    <padding android:bottom="@dimen/note_item_margin_to_parent"
+        android:left="@dimen/note_item_margin_to_parent"
+        android:right="@dimen/note_item_margin_to_parent"
+        android:top="@dimen/note_item_margin_to_parent"/>
+</shape>

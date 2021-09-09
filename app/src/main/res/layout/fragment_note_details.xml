@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.notes.notedetails.NoteDetailsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+<!--        <RelativeLayout-->
+<!--            android:id="@+id/loadingPanel"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:gravity="center"-->
+<!--            app:loadingStatus="@{viewModel.updateStatus}">-->
+
+<!--            <ProgressBar-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:indeterminate="true" />-->
+<!--        </RelativeLayout>-->
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/note_details_bottom_padding">
+
+                <EditText
+                    android:id="@+id/note_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/note_title_hint"
+                    android:text="@{viewModel.note.title}"
+                    android:inputType="textPersonName|textMultiLine"
+                    android:paddingStart="@dimen/note_title_side_padding"
+                    android:paddingTop="@dimen/note_title_upper_padding"
+                    android:paddingEnd="@dimen/note_title_side_padding"
+                    android:textSize="@dimen/note_title_text_size"
+                    />
+
+                <EditText
+                    android:id="@+id/note_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/note_details_hint"
+                    android:text="@{viewModel.note.note}"
+                    android:inputType="textPersonName|textMultiLine"
+                    android:paddingStart="@dimen/note_details_side_padding"
+                    android:paddingTop="@dimen/note_details_top_padding"
+                    android:paddingEnd="@dimen/note_details_side_padding"
+                    android:textSize="@dimen/note_details_text_size" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.bottomappbar.BottomAppBar
+                android:id="@+id/bottomAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/bottom_app_bar_height"
+                android:layout_gravity="bottom"
+                app:fabAlignmentMode="end"
+                app:fabCradleVerticalOffset="8dp" />
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Notes</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search_menu">Search</string>
+    <string name="checkbox_mode">List Mode</string>
+    <string name="note_details_hint">Note</string>
+    <string name="note_title_hint">Title</string>
+    <string name="page_title_note_details">Note Details</string>
+    <string name="close_menu_item">Close</string>
+    <string name="notes_selected_tf_menu_item">Number of notes selected</string>
+    <string name="pin_menu_item">Pin to the top</string>
+    <string name="reminder_menu_item">Add reminder</string>
+    <string name="label_menu_item">Add label</string>
+    <string name="delete_menu_item">Delete</string>
+</resources>

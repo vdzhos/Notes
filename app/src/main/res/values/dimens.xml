@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="note_details_bottom_padding">36dp</dimen>
+    <dimen name="note_details_side_padding">16dp</dimen>
+    <dimen name="note_title_side_padding">18dp</dimen>
+    <dimen name="note_title_upper_padding">24dp</dimen>
+    <dimen name="note_title_text_size">22sp</dimen>
+    <dimen name="note_details_text_size">16sp</dimen>
+    <dimen name="note_details_top_padding">10dp</dimen>
+    <dimen name="bottom_app_bar_height">48dp</dimen>
+    <dimen name="page_title_size">24dp</dimen>
+    <dimen name="recycler_view_bottom_margin">5dp</dimen>
+    <dimen name="note_item_margin_to_parent">14dp</dimen>
+    <dimen name="note_item_margin_to_another_view_inside">6dp</dimen>
+    <dimen name="note_item_margin_to_screen_horizontal">8dp</dimen>
+    <dimen name="note_item_margin_vertical">4dp</dimen>
+    <dimen name="recycler_view_padding_to_items_vertical">6dp</dimen>
+    <dimen name="note_item_border_radius">7dp</dimen>
+    <dimen name="note_item_border_stroke_width">0.5dp</dimen>
+    <dimen name="note_item_selected_border_stroke_width">2dp</dimen>
+</resources>
