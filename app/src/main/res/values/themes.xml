@@ -48,4 +48,10 @@
         <item name="android:textSize">@dimen/note_item_details_text_size</item>
     </style>
 
+    <style name="BottomSheetTextStyle">
+        <item name="android:gravity">start|center_vertical</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/bottom_sheet_text_size</item>
+    </style>
+
 </resources>

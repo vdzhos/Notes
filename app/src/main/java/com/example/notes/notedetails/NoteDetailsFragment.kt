@@ -75,6 +75,8 @@ class NoteDetailsFragment : Fragment() {
             requireActivity().setFocusAndKeyBoardOnView(binding.noteDetails)
         }
 
+        setActionsForBottomAppBarIcons()
+
         return binding.root
     }
 
@@ -87,6 +89,18 @@ class NoteDetailsFragment : Fragment() {
             updateNoteWhenBackPressed()
         }
         return true
+    }
+
+    private fun setActionsForBottomAppBarIcons(){
+        binding.options.setOnClickListener {
+            val modalBottomSheet = MoreOptionsBottomSheet()
+            modalBottomSheet.show(requireActivity().supportFragmentManager, MoreOptionsBottomSheet.TAG)
+        }
+
+        binding.addBox.setOnClickListener {
+            val modalBottomSheet = AddContentBottomSheet()
+            modalBottomSheet.show(requireActivity().supportFragmentManager, AddContentBottomSheet.TAG)
+        }
     }
 
     private fun updateNoteWhenBackPressed(){

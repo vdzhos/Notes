@@ -7,7 +7,7 @@
         android:checkableBehavior="single">
 
         <item
-            android:id="@+id/notes"
+            android:id="@+id/notesMainFragment"
             android:icon="@drawable/ic_outline_lightbulb_24"
             android:title="@string/drawer_notes" />
 

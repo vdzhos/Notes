@@ -92,8 +92,8 @@
 
                     <ImageButton
                         android:id="@+id/addBox"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="@dimen/icon_size"
+                        android:layout_height="@dimen/icon_size"
                         android:src="@drawable/ic_outline_add_box_24"
                         android:background="?attr/actionBarItemBackground" />
 
@@ -109,8 +109,8 @@
 
                     <ImageButton
                         android:id="@+id/options"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="@dimen/icon_size"
+                        android:layout_height="@dimen/icon_size"
                         android:src="@drawable/ic_baseline_more_vert_24"
                         android:background="?attr/actionBarItemBackground"/>
 

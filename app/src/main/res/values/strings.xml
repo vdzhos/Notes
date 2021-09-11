@@ -23,4 +23,8 @@
     <string name="note_details_label_menu_item">Labels</string>
     <string name="addbox_menu_item">Add content</string>
     <string name="more_vert_menu_item">More options</string>
+    <string name="bottom_sheet_delete">Delete</string>
+    <string name="bottom_sheet_copy">Make a copy</string>
+    <string name="bottom_sheet_send">Send</string>
+    <string name="bottom_sheet_checkboxes">Checkboxes</string>
 </resources>
