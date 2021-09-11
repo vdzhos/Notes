@@ -37,4 +37,15 @@
         <item name="colorControlNormal">@color/action_mode_blue</item>
     </style>
 
+    <style name="NoteTitle">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">@dimen/note_item_title_text_size</item>
+    </style>
+
+    <style name="NoteDetails">
+        <item name="color">@color/gray</item>
+        <item name="android:textSize">@dimen/note_item_details_text_size</item>
+    </style>
+
 </resources>

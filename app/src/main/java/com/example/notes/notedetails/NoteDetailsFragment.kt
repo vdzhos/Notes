@@ -2,6 +2,7 @@ package com.example.notes.notedetails
 
 import android.os.Bundle
 import android.view.*
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
@@ -41,6 +42,8 @@ class NoteDetailsFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+        (requireActivity() as AppCompatActivity).supportActionBar?.title = ""
+
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_note_details, container, false)
 
         val dataSource = NotesDatabase.getInstance(requireContext()).notesDatabaseDAO
@@ -68,9 +71,15 @@ class NoteDetailsFragment : Fragment() {
 
         setHasOptionsMenu(true)
 
-        requireActivity().setFocusAndKeyBoardOnView(binding.noteDetails)
+        if(NoteDetailsFragmentArgs.fromBundle(requireArguments()).openKeyboard) {
+            requireActivity().setFocusAndKeyBoardOnView(binding.noteDetails)
+        }
 
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.toolbar_note_details_menu, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

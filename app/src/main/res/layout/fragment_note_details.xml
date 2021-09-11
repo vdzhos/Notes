@@ -46,11 +46,13 @@
                     android:background="@android:color/transparent"
                     android:hint="@string/note_title_hint"
                     android:text="@{viewModel.note.title}"
-                    android:inputType="textPersonName|textMultiLine"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:imeOptions="actionNext"
+                    android:textSize="@dimen/note_title_text_size"
                     android:paddingStart="@dimen/note_title_side_padding"
                     android:paddingTop="@dimen/note_title_upper_padding"
                     android:paddingEnd="@dimen/note_title_side_padding"
-                    android:textSize="@dimen/note_title_text_size"
                     />
 
                 <EditText
@@ -61,10 +63,10 @@
                     android:hint="@string/note_details_hint"
                     android:text="@{viewModel.note.note}"
                     android:inputType="textPersonName|textMultiLine"
+                    android:textSize="@dimen/note_details_text_size"
                     android:paddingStart="@dimen/note_details_side_padding"
                     android:paddingTop="@dimen/note_details_top_padding"
-                    android:paddingEnd="@dimen/note_details_side_padding"
-                    android:textSize="@dimen/note_details_text_size" />
+                    android:paddingEnd="@dimen/note_details_side_padding"/>
 
             </LinearLayout>
 
@@ -80,7 +82,41 @@
                 android:layout_height="@dimen/bottom_app_bar_height"
                 android:layout_gravity="bottom"
                 app:fabAlignmentMode="end"
-                app:fabCradleVerticalOffset="8dp" />
+                app:fabCradleVerticalOffset="8dp"
+                app:contentInsetStart="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/addBox"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/ic_outline_add_box_24"
+                        android:background="?attr/actionBarItemBackground" />
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="Edited Sep 1"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/note_edited"
+                        android:gravity="center"/>
+
+                    <ImageButton
+                        android:id="@+id/options"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/ic_baseline_more_vert_24"
+                        android:background="?attr/actionBarItemBackground"/>
+
+                </LinearLayout>
+
+            </com.google.android.material.bottomappbar.BottomAppBar>
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

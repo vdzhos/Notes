@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/notesMainFragment"
         android:name="com.example.notes.notesmain.NotesMainFragment"
-        android:label="Notes"
+        android:label="@string/notes_main_fragment_title"
         tools:layout="@layout/fragment_notes_main">
         <action
             android:id="@+id/action_notesMainFragment_to_noteDetailsFragment"
@@ -17,11 +17,15 @@
     <fragment
         android:id="@+id/noteDetailsFragment"
         android:name="com.example.notes.notedetails.NoteDetailsFragment"
-        android:label="Note Details"
+        android:label="@string/notes_details_fragment_title"
         tools:layout="@layout/fragment_note_details">
         <argument
             android:name="noteId"
             app:argType="long"
             android:defaultValue="0L" />
+        <argument
+            android:name="openKeyboard"
+            app:argType="boolean"
+            android:defaultValue="false" />
     </fragment>
 </navigation>

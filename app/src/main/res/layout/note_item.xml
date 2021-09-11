@@ -22,19 +22,21 @@
 
         <TextView
             android:id="@+id/titleField"
+            style="@style/NoteTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/note_item_margin_to_another_view_inside"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/noteField"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:visibility="gone"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/noteField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/NoteDetails"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

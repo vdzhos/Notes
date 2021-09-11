@@ -3,6 +3,7 @@ package com.example.notes.notesmain
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
+import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -68,6 +69,7 @@ class NotesMainFragment : Fragment() {
                 }
                 val action = NotesMainFragmentDirections.actionNotesMainFragmentToNoteDetailsFragment()
                 action.noteId = result.await()
+                action.openKeyboard = true
                 findNavController().navigate(action)
             }
         }
@@ -87,9 +89,17 @@ class NotesMainFragment : Fragment() {
             }
 
             override fun onPrepareActionMode(mode: ActionMode, menu: Menu): Boolean {
-                menu.findItem(R.id.pin).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
-                menu.findItem(R.id.reminder).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
-                menu.findItem(R.id.label).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
+                var item = menu.findItem(R.id.pin)
+                item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
+                item.icon.setTint(ResourcesCompat.getColor(resources, R.color.action_mode_blue, null))
+
+                item = menu.findItem(R.id.reminder)
+                item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
+                item.icon.setTint(ResourcesCompat.getColor(resources, R.color.action_mode_blue, null))
+
+                item = menu.findItem(R.id.label)
+                item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
+                item.icon.setTint(ResourcesCompat.getColor(resources, R.color.action_mode_blue, null))
                 return false
             }
 
