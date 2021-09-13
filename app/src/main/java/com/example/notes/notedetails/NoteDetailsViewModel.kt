@@ -11,22 +11,19 @@ class NoteDetailsViewModel(
 
     val note: LiveData<Note> = dataSource.get(noteId)
 
-    private val _updateStatus = MutableLiveData<Boolean>()
-    val updateStatus: LiveData<Boolean>
-        get() = _updateStatus
+//    private val _updateStatus = MutableLiveData<Boolean>()
+//    val updateStatus: LiveData<Boolean>
+//        get() = _updateStatus
 
 
-    suspend fun updateNote(noteTitle: String, noteText: String){
-        val result = viewModelScope.async {
+    fun updateNote(noteTitle: String, noteText: String){
+        viewModelScope.launch {
             val note = Note(noteId = noteId, title = noteTitle, note = noteText)
             dataSource.update(note)
-//            withContext(Dispatchers.IO){
-//                Thread.sleep(5000)
-//            }
         }
-        _updateStatus.value = true
-        result.await()
-        _updateStatus.value = false
+//        _updateStatus.value = true
+//        result.await()
+//        _updateStatus.value = false
     }
 
 }

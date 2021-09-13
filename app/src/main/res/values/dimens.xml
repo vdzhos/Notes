@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="note_details_bottom_padding">36dp</dimen>
+    <dimen name="note_details_bottom_padding">84dp</dimen>
     <dimen name="note_details_side_padding">16dp</dimen>
     <dimen name="note_title_side_padding">18dp</dimen>
     <dimen name="note_title_upper_padding">24dp</dimen>

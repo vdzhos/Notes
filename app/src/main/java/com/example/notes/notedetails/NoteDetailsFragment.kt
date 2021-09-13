@@ -28,17 +28,17 @@ class NoteDetailsFragment : Fragment() {
     private lateinit var binding: FragmentNoteDetailsBinding
     private lateinit var viewModel: NoteDetailsViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        requireActivity().onBackPressedDispatcher.addCallback(
-                this,
-                object : OnBackPressedCallback(true) {
-                    override fun handleOnBackPressed() {
-                        updateNoteWhenBackPressed()
-                    }
-                })
-    }
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//
+//        requireActivity().onBackPressedDispatcher.addCallback(
+//                this,
+//                object : OnBackPressedCallback(true) {
+//                    override fun handleOnBackPressed() {
+//                        updateNoteWhenBackPressed()
+//                    }
+//                })
+//    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -54,20 +54,20 @@ class NoteDetailsFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        viewModel.updateStatus.observe(viewLifecycleOwner, Observer {
-            when(it){
-                true -> {
-                    binding.noteTitle.isFocusable = false
-                    binding.noteDetails.isFocusable = false
-                    (requireActivity() as MainActivity).setLoadingPanelVisibility(true)
-                }
-                false -> {
-                    binding.noteTitle.isFocusable = true
-                    binding.noteDetails.isFocusable = true
-                    (requireActivity() as MainActivity).setLoadingPanelVisibility(false)
-                }
-            }
-        })
+//        viewModel.updateStatus.observe(viewLifecycleOwner, Observer {
+//            when(it){
+//                true -> {
+//                    binding.noteTitle.isFocusable = false
+//                    binding.noteDetails.isFocusable = false
+//                    (requireActivity() as MainActivity).setLoadingPanelVisibility(true)
+//                }
+//                false -> {
+//                    binding.noteTitle.isFocusable = true
+//                    binding.noteDetails.isFocusable = true
+//                    (requireActivity() as MainActivity).setLoadingPanelVisibility(false)
+//                }
+//            }
+//        })
 
         setHasOptionsMenu(true)
 
@@ -84,12 +84,12 @@ class NoteDetailsFragment : Fragment() {
         inflater.inflate(R.menu.toolbar_note_details_menu, menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == android.R.id.home){
-            updateNoteWhenBackPressed()
-        }
-        return true
-    }
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        if(item.itemId == android.R.id.home){
+//            updateNoteWhenBackPressed()
+//        }
+//        return true
+//    }
 
     private fun setActionsForBottomAppBarIcons(){
         binding.options.setOnClickListener {
@@ -103,14 +103,19 @@ class NoteDetailsFragment : Fragment() {
         }
     }
 
-    private fun updateNoteWhenBackPressed(){
-        requireActivity().removeFocusAndKeyBoard()
-        lifecycleScope.launch {
-            async {
-                viewModel.updateNote(binding.noteTitle.text.toString(), binding.noteDetails.text.toString())
-            }.await()
-            findNavController().navigateUp()
-        }
+//    private fun updateNoteWhenBackPressed(){
+//        requireActivity().removeFocusAndKeyBoard()
+//        lifecycleScope.launch {
+//            async {
+//                viewModel.updateNote(binding.noteTitle.text.toString(), binding.noteDetails.text.toString())
+//            }.await()
+//            findNavController().navigateUp()
+//        }
+//    }
+
+    override fun onStop() {
+        viewModel.updateNote(binding.noteTitle.text.toString(), binding.noteDetails.text.toString())
+        super.onStop()
     }
 
 }

@@ -8,7 +8,7 @@ import android.view.inputmethod.InputMethodManager
 fun Activity.setFocusAndKeyBoardOnView(view: View){
     if(view.requestFocus()){
         val imm: InputMethodManager = applicationContext.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.SHOW_FORCED)
     }
 }
 
