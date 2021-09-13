@@ -15,30 +15,16 @@ import com.example.notes.MainActivity
 import com.example.notes.R
 import com.example.notes.database.NotesDatabase
 import com.example.notes.databinding.FragmentNoteDetailsBinding
+import com.example.notes.notesmain.NotesMainFragmentDirections
 import com.example.notes.removeFocusAndKeyBoard
 import com.example.notes.setFocusAndKeyBoardOnView
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
-
-
-
 class NoteDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentNoteDetailsBinding
     private lateinit var viewModel: NoteDetailsViewModel
-
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//
-//        requireActivity().onBackPressedDispatcher.addCallback(
-//                this,
-//                object : OnBackPressedCallback(true) {
-//                    override fun handleOnBackPressed() {
-//                        updateNoteWhenBackPressed()
-//                    }
-//                })
-//    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -53,21 +39,6 @@ class NoteDetailsFragment : Fragment() {
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
-
-//        viewModel.updateStatus.observe(viewLifecycleOwner, Observer {
-//            when(it){
-//                true -> {
-//                    binding.noteTitle.isFocusable = false
-//                    binding.noteDetails.isFocusable = false
-//                    (requireActivity() as MainActivity).setLoadingPanelVisibility(true)
-//                }
-//                false -> {
-//                    binding.noteTitle.isFocusable = true
-//                    binding.noteDetails.isFocusable = true
-//                    (requireActivity() as MainActivity).setLoadingPanelVisibility(false)
-//                }
-//            }
-//        })
 
         setHasOptionsMenu(true)
 
@@ -84,38 +55,27 @@ class NoteDetailsFragment : Fragment() {
         inflater.inflate(R.menu.toolbar_note_details_menu, menu)
     }
 
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        if(item.itemId == android.R.id.home){
-//            updateNoteWhenBackPressed()
-//        }
-//        return true
-//    }
-
     private fun setActionsForBottomAppBarIcons(){
         binding.options.setOnClickListener {
-            val modalBottomSheet = MoreOptionsBottomSheet()
-            modalBottomSheet.show(requireActivity().supportFragmentManager, MoreOptionsBottomSheet.TAG)
+            val action = NoteDetailsFragmentDirections.actionNoteDetailsFragmentToMoreOptionsBottomSheet()
+            action.noteId = viewModel.noteId
+            findNavController().navigate(action)
         }
 
         binding.addBox.setOnClickListener {
-            val modalBottomSheet = AddContentBottomSheet()
-            modalBottomSheet.show(requireActivity().supportFragmentManager, AddContentBottomSheet.TAG)
+            val action = NoteDetailsFragmentDirections.actionNoteDetailsFragmentToAddContentBottomSheet()
+            action.noteId = viewModel.noteId
+            findNavController().navigate(action)
         }
     }
-
-//    private fun updateNoteWhenBackPressed(){
-//        requireActivity().removeFocusAndKeyBoard()
-//        lifecycleScope.launch {
-//            async {
-//                viewModel.updateNote(binding.noteTitle.text.toString(), binding.noteDetails.text.toString())
-//            }.await()
-//            findNavController().navigateUp()
-//        }
-//    }
 
     override fun onStop() {
         viewModel.updateNote(binding.noteTitle.text.toString(), binding.noteDetails.text.toString())
         super.onStop()
     }
 
+}
+
+enum class Operation {
+    DISPLAY, DELETE
 }

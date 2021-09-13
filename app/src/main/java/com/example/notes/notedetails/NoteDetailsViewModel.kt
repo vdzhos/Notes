@@ -6,15 +6,10 @@ import com.example.notes.database.NotesDatabaseDAO
 import kotlinx.coroutines.*
 
 class NoteDetailsViewModel(
-        private val noteId: Long,
-        private val dataSource: NotesDatabaseDAO) : ViewModel() {
+    val noteId: Long,
+    private val dataSource: NotesDatabaseDAO) : ViewModel() {
 
     val note: LiveData<Note> = dataSource.get(noteId)
-
-//    private val _updateStatus = MutableLiveData<Boolean>()
-//    val updateStatus: LiveData<Boolean>
-//        get() = _updateStatus
-
 
     fun updateNote(noteTitle: String, noteText: String){
         viewModelScope.launch {
@@ -25,5 +20,6 @@ class NoteDetailsViewModel(
 //        result.await()
 //        _updateStatus.value = false
     }
+
 
 }

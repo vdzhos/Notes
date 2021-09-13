@@ -13,6 +13,14 @@
         <action
             android:id="@+id/action_notesMainFragment_to_noteDetailsFragment"
             app:destination="@id/noteDetailsFragment" />
+        <argument
+            android:name="noteId"
+            app:argType="long"
+            android:defaultValue="0L" />
+        <argument
+            android:name="operation"
+            app:argType="com.example.notes.notedetails.Operation"
+            android:defaultValue="DISPLAY" />
     </fragment>
     <fragment
         android:id="@+id/noteDetailsFragment"
@@ -27,5 +35,39 @@
             android:name="openKeyboard"
             app:argType="boolean"
             android:defaultValue="false" />
+        <argument
+            android:name="operation"
+            app:argType="com.example.notes.notedetails.Operation"
+            android:defaultValue="DISPLAY"/>
+        <action
+            android:id="@+id/action_noteDetailsFragment_to_moreOptionsBottomSheet"
+            app:destination="@id/moreOptionsBottomSheet" />
+        <action
+            android:id="@+id/action_noteDetailsFragment_to_addContentBottomSheet"
+            app:destination="@id/addContentBottomSheet" />
     </fragment>
+    <dialog
+        android:id="@+id/moreOptionsBottomSheet"
+        android:name="com.example.notes.notedetails.MoreOptionsBottomSheet"
+        android:label="MoreOptionsBottomSheet"
+        tools:layout="@layout/bottom_sheet_note_details_more_options" >
+        <argument
+            android:name="noteId"
+            app:argType="long"
+            android:defaultValue="0L" />
+        <action
+            android:id="@+id/action_moreOptionsBottomSheet_to_notesMainFragment"
+            app:destination="@id/notesMainFragment"
+            app:popUpTo="@id/notesMainFragment" />
+    </dialog>
+    <dialog
+        android:id="@+id/addContentBottomSheet"
+        android:name="com.example.notes.notedetails.AddContentBottomSheet"
+        android:label="AddContentBottomSheet"
+        tools:layout="@layout/bottom_sheet_note_details_add_content">
+        <argument
+            android:name="noteId"
+            app:argType="long"
+            android:defaultValue="0L"/>
+    </dialog>
 </navigation>

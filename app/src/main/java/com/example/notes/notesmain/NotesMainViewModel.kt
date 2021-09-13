@@ -3,17 +3,19 @@ package com.example.notes.notesmain
 import androidx.lifecycle.*
 import com.example.notes.database.Note
 import com.example.notes.database.NotesDatabaseDAO
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class NotesMainViewModel(
     private val dataSource: NotesDatabaseDAO) : ViewModel() {
 
     val notes = dataSource.getAllNotesDesc()
 
-    private val _createStatus = MutableLiveData<Boolean>()
-    val createStatus: LiveData<Boolean>
-        get() = _createStatus
+    private val _showLoading = MutableLiveData<Boolean>()
+    val showLoading: LiveData<Boolean>
+        get() = _showLoading
 
     private val _actionModeItemsSelected = MutableLiveData<Long>(0)
     val actionModeItemsSelected: LiveData<Long>
@@ -31,9 +33,9 @@ class NotesMainViewModel(
 //            }
             note.noteId
         }
-        _createStatus.value = true
+        _showLoading.value = true
         val noteId = result.await()
-        _createStatus.value = false
+        _showLoading.value = false
         return noteId
     }
 
@@ -73,6 +75,17 @@ class NotesMainViewModel(
             if(note.noteId==noteId) return note
         }
         return null
+    }
+
+    fun deleteNote(noteId: Long){
+        viewModelScope.launch {
+            val result = async {
+                dataSource.deleteById(noteId)
+            }
+            _showLoading.value = true
+            result.await()
+            _showLoading.value = false
+        }
     }
 
 }

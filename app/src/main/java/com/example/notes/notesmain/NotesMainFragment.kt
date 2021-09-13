@@ -12,9 +12,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.notes.MainActivity
 import com.example.notes.R
-import com.example.notes.database.Note
 import com.example.notes.database.NotesDatabase
 import com.example.notes.databinding.FragmentNotesMainBinding
+import com.example.notes.notedetails.NoteDetailsFragmentArgs
+import com.example.notes.notedetails.Operation
+import com.example.notes.removeFocusAndKeyBoard
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
@@ -22,7 +24,7 @@ import kotlinx.coroutines.launch
 class NotesMainFragment : Fragment() {
 
     private lateinit var binding: FragmentNotesMainBinding
-
+    private lateinit var viewModel: NotesMainViewModel
     private var actionMode: ActionMode? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,7 +41,7 @@ class NotesMainFragment : Fragment() {
 
         val viewModelFactory = NotesMainViewModelFactory(dataSource)
 
-        val viewModel = ViewModelProvider(this, viewModelFactory).get(NotesMainViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(NotesMainViewModel::class.java)
 
         val adapter = createAdapter(viewModel)
 
@@ -51,7 +53,7 @@ class NotesMainFragment : Fragment() {
             }
         })
 
-        viewModel.createStatus.observe(viewLifecycleOwner, Observer {
+        viewModel.showLoading.observe(viewLifecycleOwner, Observer {
             when (it) {
                 true -> {
                     (requireActivity() as MainActivity).setLoadingPanelVisibility(true)
@@ -74,7 +76,18 @@ class NotesMainFragment : Fragment() {
             }
         }
 
+        requireActivity().removeFocusAndKeyBoard()
+
         binding.lifecycleOwner = this
+
+        val operation = NoteDetailsFragmentArgs.fromBundle(requireArguments()).operation
+
+        if(operation == Operation.DELETE){
+            val noteId = NoteDetailsFragmentArgs.fromBundle(requireArguments()).noteId
+            viewModel.deleteNote(noteId)
+        }
+
+        requireArguments().clear()
 
         return binding.root
     }

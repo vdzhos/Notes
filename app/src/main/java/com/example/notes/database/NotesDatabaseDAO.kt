@@ -15,8 +15,8 @@ interface NotesDatabaseDAO {
     @Delete
     suspend fun deleteNotes(notes: List<Note>)
 
-    @Delete
-    fun delete(note: Note)
+    @Query("DELETE FROM notes_table WHERE noteId = :id")
+    suspend fun deleteById(id: Long)
 
     @Query("SELECT * FROM notes_table WHERE noteId = :id")
     fun get(id: Long) : LiveData<Note>
