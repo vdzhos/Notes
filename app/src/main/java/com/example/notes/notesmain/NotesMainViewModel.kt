@@ -81,6 +81,9 @@ class NotesMainViewModel(
         viewModelScope.launch {
             val result = async {
                 dataSource.deleteById(noteId)
+//                withContext(Dispatchers.IO){
+//                    Thread.sleep(5000)
+//                }
             }
             _showLoading.value = true
             result.await()

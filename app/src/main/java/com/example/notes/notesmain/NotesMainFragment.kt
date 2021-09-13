@@ -26,15 +26,16 @@ class NotesMainFragment : Fragment() {
     private lateinit var binding: FragmentNotesMainBinding
     private lateinit var viewModel: NotesMainViewModel
     private var actionMode: ActionMode? = null
+    private var onBackPressed: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+        onBackPressed = false
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_notes_main, container, false)
 
         val dataSource = NotesDatabase.getInstance(requireContext()).notesDatabaseDAO
@@ -80,6 +81,12 @@ class NotesMainFragment : Fragment() {
 
         binding.lifecycleOwner = this
 
+        if(!onBackPressed) executeOperation()
+
+        return binding.root
+    }
+
+    private fun executeOperation(){
         val operation = NoteDetailsFragmentArgs.fromBundle(requireArguments()).operation
 
         if(operation == Operation.DELETE){
@@ -87,9 +94,7 @@ class NotesMainFragment : Fragment() {
             viewModel.deleteNote(noteId)
         }
 
-        requireArguments().clear()
-
-        return binding.root
+        onBackPressed = true
     }
 
     private fun createActionModeCallback(viewModel: NotesMainViewModel, adapter: NotesAdapter): ActionMode.Callback? {
