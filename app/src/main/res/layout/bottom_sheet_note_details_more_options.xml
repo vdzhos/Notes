@@ -23,7 +23,7 @@
                     android:layout_width="@dimen/bottom_sheet_icon_size"
                     android:layout_height="@dimen/bottom_sheet_icon_size"
                     android:src="@drawable/ic_outline_delete_24"
-                    android:padding="6dp"
+                    android:padding="9dp"
                     />
 
                 <TextView
@@ -50,7 +50,7 @@
                     android:layout_width="@dimen/bottom_sheet_icon_size"
                     android:layout_height="@dimen/bottom_sheet_icon_size"
                     android:src="@drawable/ic_outline_content_copy_24"
-                    android:padding="8dp"/>
+                    android:padding="12dp"/>
 
                 <TextView
                     style="@style/BottomSheetTextStyle"
@@ -76,7 +76,7 @@
                     android:layout_width="@dimen/bottom_sheet_icon_size"
                     android:layout_height="@dimen/bottom_sheet_icon_size"
                     android:src="@drawable/ic_outline_share_24"
-                    android:padding="8dp"/>
+                    android:padding="11dp"/>
 
                 <TextView
                     style="@style/BottomSheetTextStyle"

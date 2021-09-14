@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -86,6 +87,13 @@ class NoteDetailsFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.toolbar_note_details_menu, menu)
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        menu.findItem(R.id.pin).icon.setTint(ResourcesCompat.getColor(resources, R.color.gray, null))
+        menu.findItem(R.id.reminder).icon.setTint(ResourcesCompat.getColor(resources, R.color.gray, null))
+        menu.findItem(R.id.label).icon.setTint(ResourcesCompat.getColor(resources, R.color.gray, null))
     }
 
     private fun setActionsForBottomAppBarIcons(){
