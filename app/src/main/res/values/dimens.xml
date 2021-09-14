@@ -26,5 +26,7 @@
     <dimen name="bottom_sheet_icon_size">50dp</dimen>
     <dimen name="bottom_sheet_text_size">16sp</dimen>
     <dimen name="bottom_sheet_text_padding_start">16dp</dimen>
+    <dimen name="drawer_app_name_side_padding">16dp</dimen>
+    <dimen name="drawer_app_name_text_view_height">50dp</dimen>
 
 </resources>

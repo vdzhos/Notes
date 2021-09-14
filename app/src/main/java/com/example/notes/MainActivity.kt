@@ -2,9 +2,11 @@ package com.example.notes
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Html
 import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
+import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
@@ -25,6 +27,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         drawerLayout = binding.drawerLayout
 
+        setTextForDrawerHeader()
+
         setSupportActionBar(binding.toolbar)
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.myNavHostFragment) as NavHostFragment
@@ -32,6 +36,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         NavigationUI.setupActionBarWithNavController(this,navController,drawerLayout)
         NavigationUI.setupWithNavController(binding.navView, navController)
+    }
+
+    private fun setTextForDrawerHeader(){
+        binding.navView.inflateHeaderView(R.layout.nav_header)
+        val header = binding.navView.getHeaderView(0)
+        val builder = StringBuilder()
+        builder.append(getColoredText("V", "#4885ed"))
+                .append(getColoredText("d", "#db3236"))
+                .append(getColoredText("z", "#f4c20d"))
+                .append(getColoredText("h", "#4885ed"))
+                .append(getColoredText("o", "#3cba54"))
+                .append(getColoredText("s", "#db3236"))
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            header.findViewById<TextView>(R.id.name).text = Html.fromHtml(builder.toString(),Html.FROM_HTML_MODE_LEGACY)
+        } else {
+            header.findViewById<TextView>(R.id.name).text = Html.fromHtml(builder.toString())
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -51,6 +73,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         TODO("Not yet implemented")
+    }
+
+    private fun getColoredText(text: String, color: String): String{
+        return StringBuilder("<font color=").append(color)
+                .append(">").append(text).append("</font>").toString()
     }
 
 }

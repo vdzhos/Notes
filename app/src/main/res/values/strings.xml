@@ -27,4 +27,5 @@
     <string name="bottom_sheet_copy">Make a copy</string>
     <string name="bottom_sheet_send">Send</string>
     <string name="bottom_sheet_checkboxes">Checkboxes</string>
+    <string name="app_name_keep">\u0020Keep</string>
 </resources>
