@@ -59,6 +59,11 @@
             android:id="@+id/action_moreOptionsBottomSheet_to_notesMainFragment"
             app:destination="@id/notesMainFragment"
             app:popUpTo="@id/notesMainFragment" />
+        <action
+            android:id="@+id/action_moreOptionsBottomSheet_to_noteDetailsFragment"
+            app:destination="@id/noteDetailsFragment"
+            app:popUpTo="@id/noteDetailsFragment"
+            app:popUpToInclusive="true" />
     </dialog>
     <dialog
         android:id="@+id/addContentBottomSheet"

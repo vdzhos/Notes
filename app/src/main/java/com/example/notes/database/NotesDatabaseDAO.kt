@@ -19,7 +19,10 @@ interface NotesDatabaseDAO {
     suspend fun deleteById(id: Long)
 
     @Query("SELECT * FROM notes_table WHERE noteId = :id")
-    fun get(id: Long) : LiveData<Note>
+    suspend fun get(id: Long) : Note
+
+    @Query("SELECT * FROM notes_table WHERE noteId = :id")
+    fun getLiveData(id: Long) : LiveData<Note>
 
     @Query("SELECT * FROM notes_table ORDER BY noteId DESC LIMIT 1")
     suspend fun getLastNote(): Note?

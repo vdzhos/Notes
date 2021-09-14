@@ -30,7 +30,6 @@ class NotesMainFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
         onBackPressed = false
     }
 
@@ -81,16 +80,18 @@ class NotesMainFragment : Fragment() {
 
         binding.lifecycleOwner = this
 
+        setHasOptionsMenu(true)
+
         if(!onBackPressed) executeOperation()
 
         return binding.root
     }
 
     private fun executeOperation(){
-        val operation = NoteDetailsFragmentArgs.fromBundle(requireArguments()).operation
+        val operation = NotesMainFragmentArgs.fromBundle(requireArguments()).operation
 
         if(operation == Operation.DELETE){
-            val noteId = NoteDetailsFragmentArgs.fromBundle(requireArguments()).noteId
+            val noteId = NotesMainFragmentArgs.fromBundle(requireArguments()).noteId
             viewModel.deleteNote(noteId)
         }
 
@@ -227,23 +228,6 @@ class NotesMainFragment : Fragment() {
             true
         }
     }
-
-//    private fun setItemLongPressedMenuItems(menu: Menu){
-//        (requireActivity() as MainActivity).setActionMenuViewVisibility(state)
-//        menu.findItem(R.id.search).isVisible = !state
-//        menu.findItem(R.id.cancel_button).isVisible = state
-//        val tf = menu.findItem(R.id.notes_selected_tf)
-//        tf.isVisible = state
-//        (tf.actionView as TextView).text = "1"
-//        val param = LinearLayout.LayoutParams(
-//                LinearLayout.LayoutParams.MATCH_PARENT,
-//                LinearLayout.LayoutParams.MATCH_PARENT,
-//                1.0f
-//        )
-//        (tf.actionView as TextView).layoutParams = param
-//        menu.findItem(R.id.pin).isVisible = state
-//        menu.findItem(R.id.reminder).isVisible = state
-//        menu.findItem(R.id.label).isVisible = state
-//    }
+    
 
 }

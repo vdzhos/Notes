@@ -25,6 +25,12 @@ class NoteDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentNoteDetailsBinding
     private lateinit var viewModel: NoteDetailsViewModel
+    private var onBackPressed: Boolean = true
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        onBackPressed = false
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -40,6 +46,21 @@ class NoteDetailsFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
+        viewModel.showLoading.observe(viewLifecycleOwner, Observer {
+            when(it){
+                true -> {
+                    binding.noteTitle.isFocusable = false
+                    binding.noteDetails.isFocusable = false
+                    (requireActivity() as MainActivity).setLoadingPanelVisibility(true)
+                }
+                false -> {
+                    binding.noteTitle.isFocusable = true
+                    binding.noteDetails.isFocusable = true
+                    (requireActivity() as MainActivity).setLoadingPanelVisibility(false)
+                }
+            }
+        })
+
         setHasOptionsMenu(true)
 
         if(NoteDetailsFragmentArgs.fromBundle(requireArguments()).openKeyboard) {
@@ -48,7 +69,19 @@ class NoteDetailsFragment : Fragment() {
 
         setActionsForBottomAppBarIcons()
 
+        if(!onBackPressed) executeOperation()
+
         return binding.root
+    }
+
+    private fun executeOperation(){
+        val operation = NoteDetailsFragmentArgs.fromBundle(requireArguments()).operation
+
+        if(operation == Operation.MAKE_A_COPY){
+            viewModel.makeACopy()
+        }
+
+        onBackPressed = true
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -77,5 +110,5 @@ class NoteDetailsFragment : Fragment() {
 }
 
 enum class Operation {
-    DISPLAY, DELETE
+    DISPLAY, DELETE, MAKE_A_COPY
 }

@@ -25,6 +25,13 @@ class MoreOptionsBottomSheet : BottomSheetDialogFragment() {
             findNavController().navigate(action)
         }
 
+        binding.makeACopy.setOnClickListener {
+            val action = MoreOptionsBottomSheetDirections.actionMoreOptionsBottomSheetToNoteDetailsFragment()
+            action.operation = Operation.MAKE_A_COPY
+            action.noteId = noteId
+            findNavController().navigate(action)
+        }
+
         return binding.root
     }
 
