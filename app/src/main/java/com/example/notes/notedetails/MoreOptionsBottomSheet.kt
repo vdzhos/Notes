@@ -32,6 +32,13 @@ class MoreOptionsBottomSheet : BottomSheetDialogFragment() {
             findNavController().navigate(action)
         }
 
+        binding.send.setOnClickListener {
+            val action = MoreOptionsBottomSheetDirections.actionMoreOptionsBottomSheetToNoteDetailsFragment()
+            action.operation = Operation.SEND
+            action.noteId = noteId
+            findNavController().navigate(action)
+        }
+
         return binding.root
     }
 

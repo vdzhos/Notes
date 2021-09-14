@@ -1,10 +1,9 @@
 package com.example.notes.notedetails
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
@@ -14,10 +13,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.notes.MainActivity
 import com.example.notes.R
+import com.example.notes.database.Note
 import com.example.notes.database.NotesDatabase
 import com.example.notes.databinding.FragmentNoteDetailsBinding
-import com.example.notes.notesmain.NotesMainFragmentDirections
-import com.example.notes.removeFocusAndKeyBoard
 import com.example.notes.setFocusAndKeyBoardOnView
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
@@ -80,9 +78,20 @@ class NoteDetailsFragment : Fragment() {
 
         if(operation == Operation.MAKE_A_COPY){
             viewModel.makeACopy()
+        } else if(operation == Operation.SEND){
+            viewModel.sendNote { startActivitySendIntent(it) }
         }
 
         onBackPressed = true
+    }
+
+    private fun startActivitySendIntent(note: Note){
+        val sendIntent = Intent(Intent.ACTION_SEND)
+        sendIntent.type = "text/plain"
+        sendIntent.putExtra(Intent.EXTRA_SUBJECT, note.title)
+        sendIntent.putExtra(Intent.EXTRA_TITLE, note.title)
+        sendIntent.putExtra(Intent.EXTRA_TEXT, note.note)
+        startActivity(sendIntent)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -118,5 +127,5 @@ class NoteDetailsFragment : Fragment() {
 }
 
 enum class Operation {
-    DISPLAY, DELETE, MAKE_A_COPY
+    DISPLAY, DELETE, MAKE_A_COPY, SEND
 }

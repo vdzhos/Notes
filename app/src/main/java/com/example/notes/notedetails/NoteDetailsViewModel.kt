@@ -1,6 +1,7 @@
 package com.example.notes.notedetails
 
 import androidx.lifecycle.*
+import com.example.notes.MainActivity
 import com.example.notes.database.Note
 import com.example.notes.database.NotesDatabaseDAO
 import kotlinx.coroutines.*
@@ -32,7 +33,7 @@ class NoteDetailsViewModel(
     fun makeACopy(){
         viewModelScope.launch {
             val result = async {
-                val note = dataSource.get(noteId)
+                val note = getNoteById(noteId)
                 note.noteId = 0L
                 dataSource.insert(note)
 //                withContext(Dispatchers.IO){
@@ -43,6 +44,23 @@ class NoteDetailsViewModel(
             result.await()
             _showLoading.value = false
         }
+    }
+
+    fun sendNote(startActivity: (note:Note) -> Unit){
+        viewModelScope.launch {
+            var note: Note? = null
+            val result = async {
+                note = getNoteById(noteId)
+            }
+            _showLoading.value = true
+            result.await()
+            _showLoading.value = false
+            startActivity(note!!)
+        }
+    }
+
+    private suspend fun getNoteById(noteId: Long) : Note {
+        return dataSource.get(noteId)
     }
 
 
