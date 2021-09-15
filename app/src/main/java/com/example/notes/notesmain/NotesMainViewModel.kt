@@ -67,8 +67,6 @@ class NotesMainViewModel(
     }
 
     fun getNoteById(noteId: Long): Note? {
-//        val index = notes.value?.binarySearchDA(key = noteId, comparator = false) {it.noteId} ?: return null
-//        return notes.value?.get(index)
         //TODO: change the N search to logN search (binary)
         if(notes.value==null) return null
         for (note in notes.value!!){

@@ -20,28 +20,3 @@ fun Activity.removeFocusAndKeyBoard(){
         view.clearFocus()
     }
 }
-
-//fun <T, K : Comparable<K>> List<T>.binarySearchDA(key: K?, fromIndex: Int = 0, toIndex: Int = size, comparator: Boolean = true, selector: (T) -> K?): Int {
-//
-//    var low = fromIndex
-//    var high = toIndex - 1
-//
-//    val cmpT: (Int, Int) -> Boolean = { i: Int, i1: Int ->
-//        if(comparator) i<=i1
-//        else i1<=i
-//    }
-//
-//    while (cmpT(low,high)) {
-//        val mid = (low + high).ushr(1) // safe from overflows
-//        val midVal = get(mid)
-//        val cmp = compareValues(selector(midVal), key)
-//
-//        if (cmp < 0)
-//            low = mid + 1
-//        else if (cmp > 0)
-//            high = mid - 1
-//        else
-//            return mid // key found
-//    }
-//    return -(low + 1)  // key not found
-//}
