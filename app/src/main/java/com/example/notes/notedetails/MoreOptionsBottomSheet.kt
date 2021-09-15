@@ -8,7 +8,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.example.notes.R
 import com.example.notes.databinding.BottomSheetNoteDetailsMoreOptionsBinding
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+
 
 class MoreOptionsBottomSheet : BottomSheetDialogFragment() {
 
@@ -40,6 +42,12 @@ class MoreOptionsBottomSheet : BottomSheetDialogFragment() {
         }
 
         return binding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val behavior = BottomSheetBehavior.from(requireView().parent as View)
+        behavior.state = BottomSheetBehavior.STATE_EXPANDED
     }
 
     companion object {

@@ -119,6 +119,9 @@ class NotesMainFragment : Fragment() {
                 item = menu.findItem(R.id.label)
                 item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
                 item.icon.setTint(ResourcesCompat.getColor(resources, R.color.action_mode_blue, null))
+
+                item = menu.findItem(R.id.delete)
+                item.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER)
                 return false
             }
 
@@ -172,7 +175,15 @@ class NotesMainFragment : Fragment() {
 
         val rvClickListener = NoteListener(onClick, null, null)
 
+        val adapter = NotesAdapter(rvClickListener)
+        adapter.setHasStableIds(true)
+
+        val actionModeCallback = createActionModeCallback(viewModel, adapter)
+
         viewModel.actionModeItemsSelected.observe(viewLifecycleOwner, Observer {
+            if(it>0 && actionMode==null) {
+                actionMode = requireActivity().startActionMode(actionModeCallback)
+            }
             actionMode?.title = viewModel.actionModeItemsSelected.value.toString()
             if(it>0){
                 rvClickListener.setActionMode(true)
@@ -181,11 +192,6 @@ class NotesMainFragment : Fragment() {
                 actionMode?.finish()
             }
         })
-
-        val adapter = NotesAdapter(rvClickListener)
-        adapter.setHasStableIds(true)
-
-        val actionModeCallback = createActionModeCallback(viewModel, adapter)
 
         rvClickListener.selectClickListener = { noteId ->
             val note = viewModel.getNoteById(noteId)!!
