@@ -3,6 +3,7 @@ package com.example.notes.notesmain
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -39,7 +40,10 @@ class NotesMainFragment : Fragment() {
 
         val dataSource = NotesDatabase.getInstance(requireContext()).notesDatabaseDAO
 
-        val viewModelFactory = NotesMainViewModelFactory(dataSource)
+        val listType = NotesMainFragmentArgs.fromBundle(requireArguments()).listType
+        setTitle(listType)
+
+        val viewModelFactory = NotesMainViewModelFactory(listType, dataSource)
 
         viewModel = ViewModelProvider(this, viewModelFactory).get(NotesMainViewModel::class.java)
 
@@ -47,11 +51,19 @@ class NotesMainFragment : Fragment() {
 
         binding.notesList.adapter = adapter
 
-        viewModel.notes.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                adapter.submitList(it)
-            }
-        })
+        if(listType != ListType.LABEL) {
+            viewModel.notes.observe(viewLifecycleOwner, Observer {
+                it?.let {
+                    adapter.submitList(it)
+                }
+            })
+        } else {
+            viewModel.notesWithLabels.observe(viewLifecycleOwner, Observer {
+                it?.let {
+                    adapter.submitList(it)
+                }
+            })
+        }
 
         viewModel.showLoading.observe(viewLifecycleOwner, Observer {
             when (it) {
@@ -96,6 +108,14 @@ class NotesMainFragment : Fragment() {
         }
 
         onBackPressed = true
+    }
+
+    private fun setTitle(listType: ListType){
+        when(listType){
+            ListType.REMINDERS -> (requireActivity() as AppCompatActivity).supportActionBar?.title = "Reminders"
+            ListType.LABEL -> (requireActivity() as AppCompatActivity).supportActionBar?.title = listType.info
+            else -> (requireActivity() as AppCompatActivity).supportActionBar?.title = "Notes"
+        }
     }
 
     private fun createActionModeCallback(viewModel: NotesMainViewModel, adapter: NotesAdapter): ActionMode.Callback? {
@@ -236,4 +256,10 @@ class NotesMainFragment : Fragment() {
     }
     
 
+}
+
+enum class ListType(var info: String?){
+    ALL(null),
+    REMINDERS(null),
+    LABEL(null)
 }

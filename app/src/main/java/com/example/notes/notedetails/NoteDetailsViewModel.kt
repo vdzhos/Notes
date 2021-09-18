@@ -5,6 +5,7 @@ import com.example.notes.MainActivity
 import com.example.notes.database.Note
 import com.example.notes.database.NotesDatabaseDAO
 import kotlinx.coroutines.*
+import java.util.*
 
 class NoteDetailsViewModel(
     val noteId: Long,

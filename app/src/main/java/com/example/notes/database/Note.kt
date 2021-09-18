@@ -21,9 +21,9 @@ data class Note(
     @ColumnInfo(name = "note")
     var note: String = "",
 
-//    @ColumnInfo(name = "labels")
-//    var labels: List<String>? = null,
-//
-//    @ColumnInfo(name = "reminder")
-//    var reminder: Date? = null
+    @ColumnInfo(name = "labels")
+    var labels: List<String>? = null,
+
+    @ColumnInfo(name = "reminder")
+    var reminder: Date? = null
 )

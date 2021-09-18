@@ -8,7 +8,7 @@ import androidx.room.TypeConverters
 import com.example.notes.Converters
 
 @Database(entities = [Note::class], version = 1, exportSchema = false)
-//@TypeConverters(Converters::class)
+@TypeConverters(Converters::class)
 abstract class NotesDatabase : RoomDatabase() {
 
     abstract val notesDatabaseDAO: NotesDatabaseDAO

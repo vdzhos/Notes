@@ -27,11 +27,11 @@ interface NotesDatabaseDAO {
     @Query("SELECT * FROM notes_table ORDER BY noteId DESC LIMIT 1")
     suspend fun getLastNote(): Note?
 
-//    @Query("SELECT * FROM notes_table WHERE reminder IS NOT NULL")
-//    fun getAllNotesWithReminder(): LiveData<List<Note>>
-//
-//    @Query("SELECT * FROM notes_table WHERE labels IS NOT NULL")
-//    fun getAllNotesWithLabels(): LiveData<List<Note>>
+    @Query("SELECT * FROM notes_table  WHERE reminder IS NOT NULL ORDER BY noteId DESC")
+    fun getAllNotesWithReminder(): LiveData<List<Note>>
+
+    @Query("SELECT * FROM notes_table WHERE labels IS NOT NULL ORDER BY noteId DESC")
+    fun getAllNotesWithLabels(): LiveData<List<Note>>
 
     @Query("SELECT * FROM notes_table ORDER BY noteId DESC")
     fun getAllNotesDesc(): LiveData<List<Note>>

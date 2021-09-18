@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_notesMainFragment_to_noteDetailsFragment"
             app:destination="@id/noteDetailsFragment" />
+        <action
+            android:id="@+id/action_notesMainFragment_self"
+            app:destination="@id/notesMainFragment" />
         <argument
             android:name="noteId"
             app:argType="long"
@@ -21,6 +24,10 @@
             android:name="operation"
             app:argType="com.example.notes.notedetails.Operation"
             android:defaultValue="DISPLAY" />
+        <argument
+            android:name="listType"
+            app:argType="com.example.notes.notesmain.ListType"
+            android:defaultValue="ALL" />
     </fragment>
     <fragment
         android:id="@+id/noteDetailsFragment"
@@ -58,7 +65,8 @@
         <action
             android:id="@+id/action_moreOptionsBottomSheet_to_notesMainFragment"
             app:destination="@id/notesMainFragment"
-            app:popUpTo="@id/notesMainFragment" />
+            app:popUpTo="@id/notesMainFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_moreOptionsBottomSheet_to_noteDetailsFragment"
             app:destination="@id/noteDetailsFragment"

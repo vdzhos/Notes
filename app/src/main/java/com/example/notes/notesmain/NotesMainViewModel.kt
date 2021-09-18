@@ -9,9 +9,26 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class NotesMainViewModel(
+    private val listType: ListType,
     private val dataSource: NotesDatabaseDAO) : ViewModel() {
 
-    val notes = dataSource.getAllNotesDesc()
+    val notes: LiveData<List<Note>> = when(listType){
+        ListType.ALL -> dataSource.getAllNotesDesc()
+        ListType.REMINDERS -> dataSource.getAllNotesWithReminder()
+        else -> dataSource.getAllNotesWithLabels()
+    }
+
+    val notesWithLabels: LiveData<List<Note>> = MediatorLiveData<List<Note>>().apply {
+
+        fun update(){
+            val list = notes.value?.filter { note ->
+                note.labels!!.contains(listType.info)
+            }
+            value = list
+        }
+
+        addSource(notes) { if(listType==ListType.LABEL) update() }
+    }
 
     private val _showLoading = MutableLiveData<Boolean>()
     val showLoading: LiveData<Boolean>

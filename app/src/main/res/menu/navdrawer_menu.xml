@@ -7,7 +7,7 @@
         android:checkableBehavior="single">
 
         <item
-            android:id="@+id/notesMainFragment"
+            android:id="@+id/notes"
             android:icon="@drawable/ic_outline_lightbulb_24"
             android:title="@string/drawer_notes" />
 
@@ -23,9 +23,14 @@
         android:checkableBehavior="single">
 
         <item
-            android:id="@+id/label"
+            android:id="@+id/label1"
             android:icon="@drawable/ic_outline_label_24"
             android:title="@string/drawer_label" />
+
+        <item
+            android:id="@+id/label2"
+            android:icon="@drawable/ic_outline_label_24"
+            android:title="Label2" />
 
         <item
             android:id="@+id/createNewLabel"
