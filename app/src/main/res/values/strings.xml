@@ -28,4 +28,14 @@
     <string name="bottom_sheet_send">Send</string>
     <string name="bottom_sheet_checkboxes">Checkboxes</string>
     <string name="app_name_keep">\u0020Keep</string>
+    <string name="bottom_sheet_reminder_tomorrow_morning">Tomorrow morning</string>
+    <string name="bottom_sheet_reminder_tomorrow_evening">Tomorrow evening</string>
+    <string name="bottom_sheet_reminder_pick_date_and_time">Pick date &amp; time</string>
+    <string name="tomorrowMorningTime">8:00 AM</string>
+    <string name="tomorrowMorningTime24">08:00</string>
+    <string name="tomorrowEveningTime">6:00 PM</string>
+    <string name="tomorrowEveningTime24">18:00</string>
+    <string name="nextWeekMorning">%1$s morning</string>
+    <string name="nextWeekMorningTime">%1$s 8:00 AM</string>
+    <string name="nextWeekMorningTime24">%1$s 08:00</string>
 </resources>

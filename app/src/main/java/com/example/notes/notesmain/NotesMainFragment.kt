@@ -7,12 +7,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.notes.MainActivity
 import com.example.notes.R
+import com.example.notes.database.Note
 import com.example.notes.database.NotesDatabase
 import com.example.notes.databinding.FragmentNotesMainBinding
 import com.example.notes.notedetails.NoteDetailsFragmentArgs
@@ -51,19 +53,14 @@ class NotesMainFragment : Fragment() {
 
         binding.notesList.adapter = adapter
 
-        if(listType != ListType.LABEL) {
-            viewModel.notes.observe(viewLifecycleOwner, Observer {
-                it?.let {
-                    adapter.submitList(it)
-                }
-            })
-        } else {
-            viewModel.notesWithLabels.observe(viewLifecycleOwner, Observer {
-                it?.let {
-                    adapter.submitList(it)
-                }
-            })
-        }
+        val notes: LiveData<List<Note>> = if(listType != ListType.LABEL) viewModel.notes
+        else viewModel.notesWithLabels
+
+        notes.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                adapter.submitList(it)
+            }
+        })
 
         viewModel.showLoading.observe(viewLifecycleOwner, Observer {
             when (it) {

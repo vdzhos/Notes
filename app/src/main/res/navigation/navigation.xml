@@ -52,10 +52,13 @@
         <action
             android:id="@+id/action_noteDetailsFragment_to_addContentBottomSheet"
             app:destination="@id/addContentBottomSheet" />
+        <action
+            android:id="@+id/action_noteDetailsFragment_to_reminderMainBottomSheet"
+            app:destination="@id/reminderMainBottomSheet" />
     </fragment>
     <dialog
         android:id="@+id/moreOptionsBottomSheet"
-        android:name="com.example.notes.notedetails.MoreOptionsBottomSheet"
+        android:name="com.example.notes.notedetails.dialogs.MoreOptionsBottomSheet"
         android:label="MoreOptionsBottomSheet"
         tools:layout="@layout/bottom_sheet_note_details_more_options" >
         <argument
@@ -75,9 +78,19 @@
     </dialog>
     <dialog
         android:id="@+id/addContentBottomSheet"
-        android:name="com.example.notes.notedetails.AddContentBottomSheet"
+        android:name="com.example.notes.notedetails.dialogs.AddContentBottomSheet"
         android:label="AddContentBottomSheet"
         tools:layout="@layout/bottom_sheet_note_details_add_content">
+        <argument
+            android:name="noteId"
+            app:argType="long"
+            android:defaultValue="0L"/>
+    </dialog>
+    <dialog
+        android:id="@+id/reminderMainBottomSheet"
+        android:name="com.example.notes.notedetails.dialogs.ReminderMainBottomSheet"
+        android:label="ReminderMainBottomSheet"
+        tools:layout="@layout/bottom_sheet_reminder_main">
         <argument
             android:name="noteId"
             app:argType="long"

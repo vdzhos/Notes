@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/tomorrowMorning"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="@dimen/bottom_sheet_icon_size"
+                    android:layout_height="@dimen/bottom_sheet_icon_size"
+                    android:src="@drawable/ic_baseline_access_time_24"
+                    android:padding="9dp" />
+
+                <TextView
+                    style="@style/BottomSheetTextStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/bottom_sheet_reminder_tomorrow_morning"
+                    android:paddingStart="@dimen/bottom_sheet_text_padding_start"
+                    android:paddingEnd="@dimen/bottom_sheet_text_padding_start"/>
+
+                <TextView
+                    android:id="@+id/tomorrowMorningTime"
+                    style="@style/BottomSheetTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingStart="@dimen/bottom_sheet_reminder_time_padding_sides"
+                    android:paddingEnd="@dimen/bottom_sheet_reminder_time_padding_sides"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tomorrowEvening"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="@dimen/bottom_sheet_icon_size"
+                    android:layout_height="@dimen/bottom_sheet_icon_size"
+                    android:src="@drawable/ic_baseline_access_time_24"
+                    android:padding="9dp" />
+
+                <TextView
+                    style="@style/BottomSheetTextStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/bottom_sheet_reminder_tomorrow_evening"
+                    android:paddingStart="@dimen/bottom_sheet_text_padding_start"
+                    android:paddingEnd="@dimen/bottom_sheet_text_padding_start"/>
+
+                <TextView
+                    android:id="@+id/tomorrowEveningTime"
+                    style="@style/BottomSheetTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingStart="@dimen/bottom_sheet_reminder_time_padding_sides"
+                    android:paddingEnd="@dimen/bottom_sheet_reminder_time_padding_sides"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/nextWeekMorning"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="@dimen/bottom_sheet_icon_size"
+                    android:layout_height="@dimen/bottom_sheet_icon_size"
+                    android:src="@drawable/ic_baseline_access_time_24"
+                    android:padding="9dp" />
+
+                <TextView
+                    android:id="@+id/nextWeekMorningFull"
+                    style="@style/BottomSheetTextStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingStart="@dimen/bottom_sheet_text_padding_start"
+                    android:paddingEnd="@dimen/bottom_sheet_text_padding_start"/>
+
+                <TextView
+                    android:id="@+id/nextWeekMorningTime"
+                    style="@style/BottomSheetTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingStart="@dimen/bottom_sheet_reminder_time_padding_sides"
+                    android:paddingEnd="@dimen/bottom_sheet_reminder_time_padding_sides"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/pickTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="@dimen/bottom_sheet_icon_size"
+                    android:layout_height="@dimen/bottom_sheet_icon_size"
+                    android:src="@drawable/ic_baseline_access_time_24"
+                    android:padding="9dp" />
+
+                <TextView
+                    style="@style/BottomSheetTextStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/bottom_sheet_reminder_pick_date_and_time"
+                    android:paddingStart="@dimen/bottom_sheet_text_padding_start"
+                    android:paddingEnd="@dimen/bottom_sheet_text_padding_start"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

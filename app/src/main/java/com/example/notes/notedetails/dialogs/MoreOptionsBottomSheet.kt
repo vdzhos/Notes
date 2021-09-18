@@ -1,4 +1,4 @@
-package com.example.notes.notedetails
+package com.example.notes.notedetails.dialogs
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.example.notes.R
 import com.example.notes.databinding.BottomSheetNoteDetailsMoreOptionsBinding
+import com.example.notes.notedetails.Operation
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
@@ -18,7 +19,7 @@ class MoreOptionsBottomSheet : BottomSheetDialogFragment() {
                               savedInstanceState: Bundle?): View? {
         val binding = DataBindingUtil.inflate<BottomSheetNoteDetailsMoreOptionsBinding>(inflater, R.layout.bottom_sheet_note_details_more_options, container, false)
 
-        val noteId = MoreOptionsBottomSheetArgs.fromBundle(requireArguments()).noteId;
+        val noteId = MoreOptionsBottomSheetArgs.fromBundle(requireArguments()).noteId
 
         binding.delete.setOnClickListener {
             val action = MoreOptionsBottomSheetDirections.actionMoreOptionsBottomSheetToNotesMainFragment()
@@ -48,10 +49,6 @@ class MoreOptionsBottomSheet : BottomSheetDialogFragment() {
         super.onStart()
         val behavior = BottomSheetBehavior.from(requireView().parent as View)
         behavior.state = BottomSheetBehavior.STATE_EXPANDED
-    }
-
-    companion object {
-        const val TAG = "MoreOptionsBottomSheet"
     }
 
 }

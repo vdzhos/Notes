@@ -98,6 +98,24 @@ class NoteDetailsFragment : Fragment() {
         inflater.inflate(R.menu.toolbar_note_details_menu, menu)
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.pin ->{
+                return true
+            }
+            R.id.reminder -> {
+                val action = NoteDetailsFragmentDirections.actionNoteDetailsFragmentToReminderMainBottomSheet()
+                action.noteId = viewModel.noteId
+                findNavController().navigate(action)
+                return true
+            }
+            R.id.label -> {
+                return true
+            }
+        }
+        return false
+    }
+
     override fun onPrepareOptionsMenu(menu: Menu) {
         super.onPrepareOptionsMenu(menu)
         menu.findItem(R.id.pin).icon.setTint(ResourcesCompat.getColor(resources, R.color.gray, null))
