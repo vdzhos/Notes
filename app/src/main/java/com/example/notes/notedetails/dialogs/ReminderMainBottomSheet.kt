@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import com.example.notes.R
 import com.example.notes.databinding.BottomSheetReminderMainBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import java.util.*
 
 class ReminderMainBottomSheet : BottomSheetDialogFragment() {
@@ -20,9 +22,51 @@ class ReminderMainBottomSheet : BottomSheetDialogFragment() {
 
         val noteId = ReminderMainBottomSheetArgs.fromBundle(requireArguments()).noteId
 
-        setDates()
+        binding.tomorrowMorning.setOnClickListener {
+            val action = ReminderMainBottomSheetDirections.actionReminderMainBottomSheetToNoteDetailsFragment()
+            action.noteId = noteId
+            action.reminder = getDate(1,8,0,0)
+            findNavController().navigate(action)
+        }
+
+        binding.tomorrowEvening.setOnClickListener {
+            val action = ReminderMainBottomSheetDirections.actionReminderMainBottomSheetToNoteDetailsFragment()
+            action.noteId = noteId
+            action.reminder = getDate(1,18,0,0)
+            findNavController().navigate(action)
+        }
+
+        binding.nextWeekMorning.setOnClickListener {
+            val action = ReminderMainBottomSheetDirections.actionReminderMainBottomSheetToNoteDetailsFragment()
+            action.noteId = noteId
+            action.reminder = getDate(7,8,0,0)
+            findNavController().navigate(action)
+        }
+
+        binding.pickTime.setOnClickListener {
+            val action = ReminderMainBottomSheetDirections.actionReminderMainBottomSheetToDateTimePickerDialog()
+            action.noteId = noteId
+            findNavController().navigate(action)
+        }
 
         return binding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val behavior = BottomSheetBehavior.from(requireView().parent as View)
+        behavior.state = BottomSheetBehavior.STATE_EXPANDED
+        setDates()
+    }
+
+    private fun getDate(d:Int, h: Int, m: Int, s: Int): Date{
+        val cal = Calendar.getInstance()
+        cal.add(Calendar.DAY_OF_YEAR,d)
+        cal.set(Calendar.HOUR_OF_DAY, h)
+        cal.set(Calendar.MINUTE, m)
+        cal.set(Calendar.SECOND, s)
+        cal.set(Calendar.MILLISECOND, 0)
+        return cal.time
     }
 
     private fun setDates(){
@@ -42,11 +86,11 @@ class ReminderMainBottomSheet : BottomSheetDialogFragment() {
         if(DateFormat.is24HourFormat(context)){
             binding.tomorrowMorningTime.text = getString(R.string.tomorrowMorningTime24)
             binding.tomorrowEveningTime.text = getString(R.string.tomorrowEveningTime24)
-            binding.nextWeekMorningTime.text = getString(R.string.nextWeekMorningTime24, dayOfWeek.substring(0,3))
+            binding.nextWeekMorningTime.text = getString(R.string.nextWeekMorningTime24, dayOfWeek.substring(0, 3))
         }else{
             binding.tomorrowMorningTime.text = getString(R.string.tomorrowMorningTime)
             binding.tomorrowEveningTime.text = getString(R.string.tomorrowEveningTime)
-            binding.nextWeekMorningTime.text = getString(R.string.nextWeekMorningTime, dayOfWeek.substring(0,3))
+            binding.nextWeekMorningTime.text = getString(R.string.nextWeekMorningTime, dayOfWeek.substring(0, 3))
         }
 
     }

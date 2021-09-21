@@ -11,10 +11,6 @@ class NoteDetailsViewModel(
     val noteId: Long,
     private val dataSource: NotesDatabaseDAO) : ViewModel() {
 
-    init {
-        println(noteId)
-    }
-
     val note: LiveData<Note> = dataSource.getLiveData(noteId)
 
     private val _showLoading = MutableLiveData<Boolean>()
@@ -23,12 +19,29 @@ class NoteDetailsViewModel(
 
     fun updateNote(noteTitle: String, noteText: String){
         viewModelScope.launch {
-            val note = Note(noteId = noteId, title = noteTitle, note = noteText)
+            val note = note.value
+            note!!.title = noteTitle
+            note.note = noteText
             dataSource.update(note)
         }
-//        _showLoading.value = true
-//        result.await()
-//        _showLoading.value = false
+    }
+
+    fun updateNoteDate(date: Date?){
+        date?.let {
+            viewModelScope.launch {
+                val result = async {
+                    val note = getNoteById(noteId)
+                    note.reminder = date
+                    dataSource.update(note)
+//                    withContext(Dispatchers.IO){
+//                        Thread.sleep(5000)
+//                    }
+                }
+                _showLoading.value = true
+                result.await()
+                _showLoading.value = false
+            }
+        }
     }
 
     fun makeACopy(){

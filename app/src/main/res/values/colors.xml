@@ -10,5 +10,7 @@
     <color name="dark_gray">#373737</color>
     <color name="gray">#656565</color>
     <color name="light_gray">#9C9C9C</color>
+    <color name="super_light_gray">#C5C5C5</color>
     <color name="action_mode_blue">#0082DF</color>
+    <color name="yellow">#E4B91D</color>
 </resources>

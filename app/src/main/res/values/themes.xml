@@ -54,4 +54,16 @@
         <item name="android:textSize">@dimen/bottom_sheet_text_size</item>
     </style>
 
+    <style name="Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">@color/light_gray</item>
+    </style>
+
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/yellow</item>
+        <item name="colorControlActivated">@color/action_mode_blue</item>
+<!--        <item name="android:textColorPrimaryInverse">@color/black</item>-->
+    </style>
+
 </resources>

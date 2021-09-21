@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/reminder_date_time_picker_dialog_title"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="@dimen/reminder_date_time_picker_dialog_title_size"
+            android:padding="@dimen/reminder_date_time_picker_dialog_title_padding"/>
+
+        <View style="@style/Divider" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/reminder_date_time_picker_horizontal_padding"
+            android:paddingVertical="@dimen/reminder_date_time_picker_vertical_padding">
+
+            <com.example.notes.myviews.MySpinner
+                android:id="@+id/dateSpinner"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                android:backgroundTint="@color/super_light_gray"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/reminder_date_time_picker_spinner_bottom_padding"
+                android:entries="@array/reminderDates"/>
+
+            <com.example.notes.myviews.MySpinner
+                android:id="@+id/timeSpinner"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                android:backgroundTint="@color/super_light_gray"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/reminder_date_time_picker_spinner_bottom_padding"
+                android:entries="@array/reminderTime"/>
+
+            <com.example.notes.myviews.MySpinner
+                android:id="@+id/repeatSpinner"
+                style="@style/Base.Widget.AppCompat.Spinner.Underlined"
+                android:backgroundTint="@color/super_light_gray"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/reminder_date_time_picker_spinner_bottom_padding"
+                android:entries="@array/reminderRepeats"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="end">
+
+                <Button
+                    android:id="@+id/cancel"
+                    android:stateListAnimator="@null"
+                    android:textSize="@dimen/reminder_date_time_picker_cancel_btn_textsize"
+                    android:textAllCaps="false"
+                    android:insetTop="8dp"
+                    android:insetBottom="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/reminder_date_time_picker_cancel_btn" />
+
+                <Button
+                    android:id="@+id/save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/yellow"
+                    android:insetTop="8dp"
+                    android:insetBottom="8dp"
+                    android:stateListAnimator="@null"
+                    android:text="@string/reminder_date_time_picker_save_btn"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/reminder_date_time_picker_cancel_btn_textsize" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</layout>

@@ -46,6 +46,11 @@
             android:name="operation"
             app:argType="com.example.notes.notedetails.Operation"
             android:defaultValue="DISPLAY"/>
+        <argument
+            android:name="reminder"
+            app:argType="java.util.Date"
+            android:defaultValue="@null"
+            app:nullable="true"/>
         <action
             android:id="@+id/action_noteDetailsFragment_to_moreOptionsBottomSheet"
             app:destination="@id/moreOptionsBottomSheet" />
@@ -91,6 +96,25 @@
         android:name="com.example.notes.notedetails.dialogs.ReminderMainBottomSheet"
         android:label="ReminderMainBottomSheet"
         tools:layout="@layout/bottom_sheet_reminder_main">
+        <argument
+            android:name="noteId"
+            app:argType="long"
+            android:defaultValue="0L"/>
+        <action
+            android:id="@+id/action_reminderMainBottomSheet_to_noteDetailsFragment"
+            app:destination="@id/noteDetailsFragment"
+            app:popUpTo="@id/noteDetailsFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_reminderMainBottomSheet_to_dateTimePickerDialog"
+            app:destination="@id/dateTimePickerDialog"
+            app:popUpTo="@id/noteDetailsFragment" />
+    </dialog>
+    <dialog
+        android:id="@+id/dateTimePickerDialog"
+        android:name="com.example.notes.notedetails.dialogs.DateTimePickerDialog"
+        android:label="DateTimePickerDialog"
+        tools:layout="@layout/dialog_date_time_picker">
         <argument
             android:name="noteId"
             app:argType="long"

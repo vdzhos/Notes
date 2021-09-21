@@ -35,7 +35,43 @@
     <string name="tomorrowMorningTime24">08:00</string>
     <string name="tomorrowEveningTime">6:00 PM</string>
     <string name="tomorrowEveningTime24">18:00</string>
+    <string name="afternoonTime">1:00 PM</string>
+    <string name="afternoonTime24">13:00</string>
+    <string name="nightTime">8:00 PM</string>
+    <string name="nightTime24">20:00</string>
     <string name="nextWeekMorning">%1$s morning</string>
     <string name="nextWeekMorningTime">%1$s 8:00 AM</string>
     <string name="nextWeekMorningTime24">%1$s 08:00</string>
+    <string name="reminder_date_time_picker_dialog_title">Add reminder</string>
+    <string name="reminder_date_time_picker_cancel_btn">Cancel</string>
+    <string name="reminder_date_time_picker_save_btn">Save</string>
+    <string name="reminder_spinner_date_placeholders">%1$s %2$d%3$s</string>
+    <string name="reminder_spinner_time_placeholders">%1$s:%2$s %3$s</string>
+    <string name="reminder_spinner_repeat_placeholders">Repeats %1$s</string>
+
+    <string-array name="reminderDates">
+        <item>Not selected</item>
+        <item>Today</item>
+        <item>Tomorrow</item>
+        <item>Next</item>
+        <item>Pick a date…</item>
+    </string-array>
+
+    <string-array name="reminderTime">
+        <item>Not selected</item>
+        <item>Morning</item>
+        <item>Afternoon</item>
+        <item>Evening</item>
+        <item>Night</item>
+        <item>Pick a time…</item>
+    </string-array>
+
+    <string-array name="reminderRepeats">
+        <item>Does not repeat</item>
+        <item>Daily</item>
+        <item>Weekly</item>
+        <item>Monthly</item>
+        <item>Yearly</item>
+    </string-array>
+
 </resources>

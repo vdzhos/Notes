@@ -3,13 +3,12 @@ package com.example.notes.notedetails
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
-import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.notes.MainActivity
 import com.example.notes.R
@@ -17,8 +16,7 @@ import com.example.notes.database.Note
 import com.example.notes.database.NotesDatabase
 import com.example.notes.databinding.FragmentNoteDetailsBinding
 import com.example.notes.setFocusAndKeyBoardOnView
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
+import java.util.*
 
 class NoteDetailsFragment : Fragment() {
 
@@ -46,7 +44,7 @@ class NoteDetailsFragment : Fragment() {
         binding.lifecycleOwner = this
 
         viewModel.showLoading.observe(viewLifecycleOwner, Observer {
-            when(it){
+            when (it) {
                 true -> {
                     binding.noteTitle.isFocusable = false
                     binding.noteDetails.isFocusable = false
@@ -59,6 +57,7 @@ class NoteDetailsFragment : Fragment() {
                 }
             }
         })
+        viewModel.updateNoteDate(NoteDetailsFragmentArgs.fromBundle(requireArguments()).reminder)
 
         setHasOptionsMenu(true)
 
@@ -100,7 +99,7 @@ class NoteDetailsFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            R.id.pin ->{
+            R.id.pin -> {
                 return true
             }
             R.id.reminder -> {

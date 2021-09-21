@@ -3,6 +3,7 @@ package com.example.notes.notedetails
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.notes.database.NotesDatabaseDAO
+import java.util.*
 
 class NoteDetailsViewModelFactory(
         private val noteId: Long = -1,
