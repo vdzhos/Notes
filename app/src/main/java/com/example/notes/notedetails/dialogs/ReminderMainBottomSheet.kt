@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.example.notes.R
+import com.example.notes.Reminder
 import com.example.notes.databinding.BottomSheetReminderMainBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -25,21 +26,21 @@ class ReminderMainBottomSheet : BottomSheetDialogFragment() {
         binding.tomorrowMorning.setOnClickListener {
             val action = ReminderMainBottomSheetDirections.actionReminderMainBottomSheetToNoteDetailsFragment()
             action.noteId = noteId
-            action.reminder = getDate(1,8,0,0)
+            action.reminder = Reminder(getDate(1,8,0,0),Repeat.DOES_NOT_REPEAT)
             findNavController().navigate(action)
         }
 
         binding.tomorrowEvening.setOnClickListener {
             val action = ReminderMainBottomSheetDirections.actionReminderMainBottomSheetToNoteDetailsFragment()
             action.noteId = noteId
-            action.reminder = getDate(1,18,0,0)
+            action.reminder = Reminder(getDate(1,18,0,0),Repeat.DOES_NOT_REPEAT)
             findNavController().navigate(action)
         }
 
         binding.nextWeekMorning.setOnClickListener {
             val action = ReminderMainBottomSheetDirections.actionReminderMainBottomSheetToNoteDetailsFragment()
             action.noteId = noteId
-            action.reminder = getDate(7,8,0,0)
+            action.reminder = Reminder(getDate(7,8,0,0),Repeat.DOES_NOT_REPEAT)
             findNavController().navigate(action)
         }
 

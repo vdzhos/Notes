@@ -1,7 +1,7 @@
 package com.example.notes.notedetails
 
 import androidx.lifecycle.*
-import com.example.notes.MainActivity
+import com.example.notes.Reminder
 import com.example.notes.database.Note
 import com.example.notes.database.NotesDatabaseDAO
 import kotlinx.coroutines.*
@@ -26,12 +26,12 @@ class NoteDetailsViewModel(
         }
     }
 
-    fun updateNoteDate(date: Date?){
-        date?.let {
+    fun updateNoteDate(reminder: Reminder?){
+        reminder?.let {
             viewModelScope.launch {
                 val result = async {
                     val note = getNoteById(noteId)
-                    note.reminder = date
+                    note.reminder = reminder
                     dataSource.update(note)
 //                    withContext(Dispatchers.IO){
 //                        Thread.sleep(5000)

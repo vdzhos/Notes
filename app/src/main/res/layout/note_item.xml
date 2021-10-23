@@ -27,6 +27,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/note_item_margin_to_another_view_inside"
             android:visibility="gone"
+            tools:visibility="visible"
+            tools:text="Title"
             app:layout_constraintBottom_toTopOf="@+id/noteField"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -34,14 +36,33 @@
 
         <TextView
             android:id="@+id/noteField"
+            style="@style/NoteDetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/NoteDetails"
+            android:layout_marginBottom="@dimen/note_item_margin_to_another_view_inside"
+            android:visibility="gone"
+            tools:text="Title"
+            tools:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/tagsFlexbox"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titleField"/>
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/tagsFlexbox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:dividerDrawableHorizontal="@drawable/tag_horizontal_separator"
+            app:dividerDrawableVertical="@drawable/tag_vertical_separator"
+            app:flexWrap="wrap"
+            app:showDividerHorizontal="middle"
+            app:showDividerVertical="middle"
+            android:visibility="gone"
+            tools:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/titleField"
-            android:visibility="gone"/>
+            app:layout_constraintTop_toBottomOf="@+id/noteField"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -53,7 +53,7 @@
         <item>Not selected</item>
         <item>Today</item>
         <item>Tomorrow</item>
-        <item>Next</item>
+        <item>Next %1$s</item>
         <item>Pick a date…</item>
     </string-array>
 

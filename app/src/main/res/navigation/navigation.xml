@@ -48,7 +48,7 @@
             android:defaultValue="DISPLAY"/>
         <argument
             android:name="reminder"
-            app:argType="java.util.Date"
+            app:argType="com.example.notes.Reminder"
             android:defaultValue="@null"
             app:nullable="true"/>
         <action
@@ -119,5 +119,10 @@
             android:name="noteId"
             app:argType="long"
             android:defaultValue="0L"/>
+        <action
+            android:id="@+id/action_dateTimePickerDialog_to_noteDetailsFragment"
+            app:destination="@id/noteDetailsFragment"
+            app:popUpTo="@id/noteDetailsFragment"
+            app:popUpToInclusive="true"/>
     </dialog>
 </navigation>

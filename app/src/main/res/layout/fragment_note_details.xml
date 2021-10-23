@@ -69,6 +69,24 @@
                     android:paddingTop="@dimen/note_details_top_padding"
                     android:paddingEnd="@dimen/note_details_side_padding"/>
 
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/tagsFlexbox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/note_details_tags_flexbox_side_padding"
+                    android:paddingTop="@dimen/note_details_tags_flexbox_top_padding"
+                    android:paddingEnd="@dimen/note_details_tags_flexbox_side_padding"
+                    android:visibility="gone"
+                    tools:visibility="visible"
+                    app:flexWrap="wrap"
+                    app:dividerDrawableHorizontal="@drawable/tag_horizontal_separator"
+                    app:dividerDrawableVertical="@drawable/tag_vertical_separator"
+                    app:showDividerHorizontal="middle"
+                    app:showDividerVertical="middle"
+                    reminder="@{viewModel.note.reminder}"
+                    labels="@{viewModel.note.labels}"
+                    size="@{true}"/>
+
             </LinearLayout>
 
         </ScrollView>

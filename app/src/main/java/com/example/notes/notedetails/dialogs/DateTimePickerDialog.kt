@@ -2,17 +2,24 @@ package com.example.notes.notedetails.dialogs
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
+import androidx.navigation.fragment.findNavController
 import com.example.notes.R
+import com.example.notes.Reminder
 import com.example.notes.databinding.DialogDateTimePickerBinding
+import java.text.SimpleDateFormat
+import java.time.DayOfWeek
 import java.util.*
 import kotlin.math.abs
 
@@ -33,6 +40,10 @@ class DateTimePickerDialog: DialogFragment() {
 
         format24 = DateFormat.is24HourFormat(requireContext())
 
+        val noteId = DateTimePickerDialogArgs.fromBundle(requireArguments()).noteId
+
+        setDateSpinnerEntries()
+
         savedInstanceState?.let { bundle ->
             val date = bundle.getSerializable("Date")
             date?.let {
@@ -47,11 +58,40 @@ class DateTimePickerDialog: DialogFragment() {
         setupSpinners()
 
         binding.save.setOnClickListener {
-            println(cal.time)
-            println(binding.repeatSpinner.selectedItemPosition)
+            val selectedDate = binding.dateSpinner.selectedItemPosition
+            val selectedTime = binding.timeSpinner.selectedItemPosition
+            if(selectedDate!=0 && selectedTime!=0){
+                val action = DateTimePickerDialogDirections.actionDateTimePickerDialogToNoteDetailsFragment()
+                action.noteId = noteId
+                action.reminder = Reminder(cal.time, Repeat.values()[binding.repeatSpinner.selectedItemPosition])
+                findNavController().navigate(action)
+            }
+            if(selectedDate==0){
+                binding.dateSpinner.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.red))
+            }else{
+                binding.dateSpinner.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.super_light_gray))
+            }
+            if(selectedTime==0){
+                binding.timeSpinner.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.red))
+            }else{
+                binding.timeSpinner.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.super_light_gray))
+            }
+        }
+
+        binding.cancel.setOnClickListener {
+            findNavController().navigateUp()
         }
 
         return binding.root
+    }
+
+    private fun setDateSpinnerEntries() {
+        val arr = resources.getStringArray(R.array.reminderDates)
+        val next = String.format(arr[3], SimpleDateFormat("EEEE", Locale.ENGLISH).format(Date()))
+        arr[3] = next
+        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_item, arr)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        binding.dateSpinner.adapter = adapter
     }
 
     override fun onStart() {
@@ -98,6 +138,7 @@ class DateTimePickerDialog: DialogFragment() {
                     if (position != 4 && position !=0) {
                         (it as TextView).text = getString(R.string.reminder_spinner_date_placeholders,
                                 cal.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault()), cal.get(Calendar.DAY_OF_MONTH), "")
+                        binding.dateSpinner.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.super_light_gray))
                     }
                     datePickerLocker = false
                 }
@@ -120,10 +161,14 @@ class DateTimePickerDialog: DialogFragment() {
             cal.set(Calendar.MONTH, m)
             cal.set(Calendar.YEAR, y)
             (binding.dateSpinner.selectedView as TextView).text = getDateInText(prevYear)
+            binding.dateSpinner.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.super_light_gray))
         }
         datePickerDialog = DatePickerDialog(requireContext(), R.style.DialogTheme,
                 listener, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH),
                 cal.get(Calendar.DAY_OF_MONTH))
+        datePickerDialog.setOnCancelListener {
+            binding.dateSpinner.setSelection(0)
+        }
         datePickerDialog.datePicker.minDate = Date().time
     }
 
@@ -157,6 +202,9 @@ class DateTimePickerDialog: DialogFragment() {
                             }
                         }
                     }
+                    if(position!=0 && position!=5){
+                        binding.timeSpinner.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.super_light_gray))
+                    }
                     timePickerLocker = false
                 }
             }
@@ -170,9 +218,13 @@ class DateTimePickerDialog: DialogFragment() {
             cal.set(Calendar.HOUR_OF_DAY, h)
             cal.set(Calendar.MINUTE, m)
             (binding.timeSpinner.selectedView as TextView).text = getTimeInText(h, m)
+            binding.timeSpinner.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.super_light_gray))
         }
         timePickerDialog = TimePickerDialog(requireContext(), R.style.DialogTheme,
                 listener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), format24)
+        timePickerDialog.setOnCancelListener {
+            binding.timeSpinner.setSelection(0)
+        }
     }
 
     private fun setTime(id: Int, id24: Int, hour: Int){
@@ -199,10 +251,10 @@ class DateTimePickerDialog: DialogFragment() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 binding.repeatSpinner.selectedView?.let {
                     when(position){
-                        1 -> (it as TextView).text = getString(R.string.reminder_spinner_repeat_placeholders,"daily")
-                        2 -> (it as TextView).text = getString(R.string.reminder_spinner_repeat_placeholders,"weekly")
-                        3 -> (it as TextView).text = getString(R.string.reminder_spinner_repeat_placeholders,"monthly")
-                        4 -> (it as TextView).text = getString(R.string.reminder_spinner_repeat_placeholders,"yearly")
+                        1 -> (it as TextView).text = getString(R.string.reminder_spinner_repeat_placeholders, "daily")
+                        2 -> (it as TextView).text = getString(R.string.reminder_spinner_repeat_placeholders, "weekly")
+                        3 -> (it as TextView).text = getString(R.string.reminder_spinner_repeat_placeholders, "monthly")
+                        4 -> (it as TextView).text = getString(R.string.reminder_spinner_repeat_placeholders, "yearly")
                     }
                 }
             }
@@ -214,8 +266,8 @@ class DateTimePickerDialog: DialogFragment() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putSerializable("Date", cal.time)
-        outState.putBoolean("dateLocker", binding.dateSpinner.selectedItemPosition==4)
-        outState.putBoolean("timeLocker", binding.timeSpinner.selectedItemPosition==5)
+        outState.putBoolean("dateLocker", binding.dateSpinner.selectedItemPosition == 4)
+        outState.putBoolean("timeLocker", binding.timeSpinner.selectedItemPosition == 5)
     }
 
 }

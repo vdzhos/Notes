@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/tag_item_bg"/>
+    <corners android:radius="@dimen/tag_item_radius"/>
+    <padding android:bottom="@dimen/tag_item_padding_vert"
+             android:left="@dimen/tag_item_padding_hor"
+             android:right="@dimen/tag_item_padding_hor"
+             android:top="@dimen/tag_item_padding_vert"/>
+</shape>

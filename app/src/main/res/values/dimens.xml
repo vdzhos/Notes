@@ -35,5 +35,11 @@
     <dimen name="reminder_date_time_picker_horizontal_padding">20dp</dimen>
     <dimen name="reminder_date_time_picker_vertical_padding">8dp</dimen>
     <dimen name="reminder_date_time_picker_spinner_bottom_padding">8dp</dimen>
+    <dimen name="tag_item_radius">15dp</dimen>
+    <dimen name="tag_item_padding_vert">5dp</dimen>
+    <dimen name="tag_item_padding_hor">10dp</dimen>
+    <dimen name="note_details_tags_flexbox_side_padding">12dp</dimen>
+    <dimen name="note_details_tags_flexbox_top_padding">16dp</dimen>
+<!--    <dimen name="tag_height_big">29dp</dimen>-->
 
 </resources>

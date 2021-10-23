@@ -31,8 +31,7 @@
                 android:backgroundTint="@color/super_light_gray"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/reminder_date_time_picker_spinner_bottom_padding"
-                android:entries="@array/reminderDates"/>
+                android:layout_marginBottom="@dimen/reminder_date_time_picker_spinner_bottom_padding" />
 
             <com.example.notes.myviews.MySpinner
                 android:id="@+id/timeSpinner"

@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
-import java.util.*
+import com.example.notes.Reminder
 
 @Entity(tableName = "notes_table")
 data class Note(
@@ -25,5 +25,5 @@ data class Note(
     var labels: List<String>? = null,
 
     @ColumnInfo(name = "reminder")
-    var reminder: Date? = null
+    var reminder: Reminder? = null
 )

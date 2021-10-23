@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.notes.R
 import com.example.notes.database.Note
 import com.example.notes.databinding.NoteItemBinding
+import com.example.notes.setTags
 
 class NotesAdapter(private val clickListener: NoteListener): ListAdapter<Note, NotesAdapter.ViewHolder>(NotesDiffCallback()) {
 
@@ -52,6 +53,7 @@ class NotesAdapter(private val clickListener: NoteListener): ListAdapter<Note, N
             itemView.setOnLongClickListener {
                 clickListener.onLongClick(item)!!
             }
+            binding.tagsFlexbox.setTags(item.reminder, item.labels,false)
         }
 
         companion object {

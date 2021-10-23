@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -15,7 +16,9 @@ import com.example.notes.R
 import com.example.notes.database.Note
 import com.example.notes.database.NotesDatabase
 import com.example.notes.databinding.FragmentNoteDetailsBinding
+import com.example.notes.myviews.Tag
 import com.example.notes.setFocusAndKeyBoardOnView
+import com.google.android.flexbox.FlexboxLayout
 import java.util.*
 
 class NoteDetailsFragment : Fragment() {
