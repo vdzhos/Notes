@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.notes.R
 import com.example.notes.Reminder
 import com.example.notes.databinding.BottomSheetReminderMainBinding
+import com.example.notes.notedetails.dialogs.datetimepicker.Repeat
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import java.util.*
@@ -26,27 +27,28 @@ class ReminderMainBottomSheet : BottomSheetDialogFragment() {
         binding.tomorrowMorning.setOnClickListener {
             val action = ReminderMainBottomSheetDirections.actionReminderMainBottomSheetToNoteDetailsFragment()
             action.noteId = noteId
-            action.reminder = Reminder(getDate(1,8,0,0),Repeat.DOES_NOT_REPEAT)
+            action.reminder = Reminder(getDate(1,8,0,0), Repeat.DOES_NOT_REPEAT)
             findNavController().navigate(action)
         }
 
         binding.tomorrowEvening.setOnClickListener {
             val action = ReminderMainBottomSheetDirections.actionReminderMainBottomSheetToNoteDetailsFragment()
             action.noteId = noteId
-            action.reminder = Reminder(getDate(1,18,0,0),Repeat.DOES_NOT_REPEAT)
+            action.reminder = Reminder(getDate(1,18,0,0), Repeat.DOES_NOT_REPEAT)
             findNavController().navigate(action)
         }
 
         binding.nextWeekMorning.setOnClickListener {
             val action = ReminderMainBottomSheetDirections.actionReminderMainBottomSheetToNoteDetailsFragment()
             action.noteId = noteId
-            action.reminder = Reminder(getDate(7,8,0,0),Repeat.DOES_NOT_REPEAT)
+            action.reminder = Reminder(getDate(7,8,0,0), Repeat.DOES_NOT_REPEAT)
             findNavController().navigate(action)
         }
 
         binding.pickTime.setOnClickListener {
             val action = ReminderMainBottomSheetDirections.actionReminderMainBottomSheetToDateTimePickerDialog()
             action.noteId = noteId
+            action.reminder = ReminderMainBottomSheetArgs.fromBundle(requireArguments()).reminder
             findNavController().navigate(action)
         }
 

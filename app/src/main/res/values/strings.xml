@@ -45,9 +45,8 @@
     <string name="reminder_date_time_picker_dialog_title">Add reminder</string>
     <string name="reminder_date_time_picker_cancel_btn">Cancel</string>
     <string name="reminder_date_time_picker_save_btn">Save</string>
-    <string name="reminder_spinner_date_placeholders">%1$s %2$d%3$s</string>
-    <string name="reminder_spinner_time_placeholders">%1$s:%2$s %3$s</string>
     <string name="reminder_spinner_repeat_placeholders">Repeats %1$s</string>
+    <string name="reminder_date_time_picker_delete_btn">Delete</string>
 
     <string-array name="reminderDates">
         <item>Not selected</item>

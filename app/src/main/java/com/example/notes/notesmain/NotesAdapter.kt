@@ -53,7 +53,7 @@ class NotesAdapter(private val clickListener: NoteListener): ListAdapter<Note, N
             itemView.setOnLongClickListener {
                 clickListener.onLongClick(item)!!
             }
-            binding.tagsFlexbox.setTags(item.reminder, item.labels,false)
+            binding.tagsFlexbox.setTags(item.reminder, item.labels,false,-1L)
         }
 
         companion object {

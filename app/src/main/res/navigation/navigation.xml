@@ -60,6 +60,9 @@
         <action
             android:id="@+id/action_noteDetailsFragment_to_reminderMainBottomSheet"
             app:destination="@id/reminderMainBottomSheet" />
+        <action
+            android:id="@+id/action_noteDetailsFragment_to_dateTimePickerDialog"
+            app:destination="@id/dateTimePickerDialog" />
     </fragment>
     <dialog
         android:id="@+id/moreOptionsBottomSheet"
@@ -100,6 +103,11 @@
             android:name="noteId"
             app:argType="long"
             android:defaultValue="0L"/>
+        <argument
+            android:name="reminder"
+            app:argType="com.example.notes.Reminder"
+            android:defaultValue="@null"
+            app:nullable="true"/>
         <action
             android:id="@+id/action_reminderMainBottomSheet_to_noteDetailsFragment"
             app:destination="@id/noteDetailsFragment"
@@ -112,13 +120,18 @@
     </dialog>
     <dialog
         android:id="@+id/dateTimePickerDialog"
-        android:name="com.example.notes.notedetails.dialogs.DateTimePickerDialog"
+        android:name="com.example.notes.notedetails.dialogs.datetimepicker.DateTimePickerDialog"
         android:label="DateTimePickerDialog"
         tools:layout="@layout/dialog_date_time_picker">
         <argument
             android:name="noteId"
             app:argType="long"
             android:defaultValue="0L"/>
+        <argument
+            android:name="reminder"
+            app:argType="com.example.notes.Reminder"
+            android:defaultValue="@null"
+            app:nullable="true"/>
         <action
             android:id="@+id/action_dateTimePickerDialog_to_noteDetailsFragment"
             app:destination="@id/noteDetailsFragment"

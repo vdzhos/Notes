@@ -85,7 +85,8 @@
                     app:showDividerVertical="middle"
                     reminder="@{viewModel.note.reminder}"
                     labels="@{viewModel.note.labels}"
-                    size="@{true}"/>
+                    noteId="@{viewModel.note.noteId}"
+                    size="@{true}" />
 
             </LinearLayout>
 

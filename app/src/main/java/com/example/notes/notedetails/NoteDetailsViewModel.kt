@@ -31,7 +31,8 @@ class NoteDetailsViewModel(
             viewModelScope.launch {
                 val result = async {
                     val note = getNoteById(noteId)
-                    note.reminder = reminder
+                    if(reminder.delete) note.reminder = null
+                    else note.reminder = reminder
                     dataSource.update(note)
 //                    withContext(Dispatchers.IO){
 //                        Thread.sleep(5000)

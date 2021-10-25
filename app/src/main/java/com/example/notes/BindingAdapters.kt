@@ -3,13 +3,15 @@ package com.example.notes
 import android.text.format.DateFormat
 import android.view.View
 import androidx.databinding.BindingAdapter
+import androidx.navigation.findNavController
 import com.example.notes.myviews.Tag
+import com.example.notes.notedetails.NoteDetailsFragmentDirections
 import com.google.android.flexbox.FlexboxLayout
 import java.text.SimpleDateFormat
 import java.util.*
 
-@BindingAdapter(value = ["reminder","labels","size"], requireAll = false)
-fun FlexboxLayout.setTags(reminder: Reminder?, labels: List<String>?, size: Boolean){
+@BindingAdapter(value = ["reminder","labels","size","noteId"], requireAll = false)
+fun FlexboxLayout.setTags(reminder: Reminder?, labels: List<String>?, size: Boolean, noteId: Long){
     if(reminder!=null || labels!=null){
         visibility = View.VISIBLE
     }else {
@@ -19,27 +21,17 @@ fun FlexboxLayout.setTags(reminder: Reminder?, labels: List<String>?, size: Bool
     removeAllViews()
     reminder?.let {
         val tag = Tag(context,size)
-        val cal = Calendar.getInstance()
-        val today = Calendar.getInstance()
-        val tomorrow = Calendar.getInstance()
-        tomorrow.add(Calendar.DAY_OF_MONTH, 1)
-        cal.time = it.date
-        val day = when(cal.get(Calendar.DATE)){
-            today.get(Calendar.DATE) -> "Today"
-            tomorrow.get(Calendar.DATE) -> "Tomorrow"
-            else -> "${SimpleDateFormat("MMM",Locale.ENGLISH).format(cal.time)} ${cal.get(Calendar.DAY_OF_MONTH)}"
+
+        if(noteId!=-1L){
+            tag.setOnClickListener {
+                val action = NoteDetailsFragmentDirections.actionNoteDetailsFragmentToDateTimePickerDialog()
+                action.noteId = noteId
+                action.reminder = reminder
+                findNavController().navigate(action)
+            }
         }
 
-        var min = cal.get(Calendar.MINUTE).toString()
-        val hour = cal.get(Calendar.HOUR_OF_DAY)
-        if(min.length<2) min = "0$min"
-        val time = if(DateFormat.is24HourFormat(context)){
-            "$hour:$min"
-        }else{
-            "${cal.get(Calendar.HOUR)}:$min ${if(hour>=12) "PM" else "AM"}"
-        }
-
-        val dayTime = "$day, $time"
+        val dayTime = formatDateAndTimeForReminderTag(it,DateFormat.is24HourFormat(context))
         tag.setText(dayTime)
         addView(tag,0)
     }

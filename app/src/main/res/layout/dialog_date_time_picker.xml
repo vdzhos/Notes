@@ -58,6 +58,18 @@
                 android:gravity="end">
 
                 <Button
+                    android:id="@+id/delete"
+                    android:stateListAnimator="@null"
+                    android:textSize="@dimen/reminder_date_time_picker_cancel_btn_textsize"
+                    android:textAllCaps="false"
+                    android:insetTop="8dp"
+                    android:insetBottom="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/reminder_date_time_picker_delete_btn"
+                    android:visibility="gone"/>
+
+                <Button
                     android:id="@+id/cancel"
                     android:stateListAnimator="@null"
                     android:textSize="@dimen/reminder_date_time_picker_cancel_btn_textsize"

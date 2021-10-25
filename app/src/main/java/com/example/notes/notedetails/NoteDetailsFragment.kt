@@ -108,6 +108,7 @@ class NoteDetailsFragment : Fragment() {
             R.id.reminder -> {
                 val action = NoteDetailsFragmentDirections.actionNoteDetailsFragmentToReminderMainBottomSheet()
                 action.noteId = viewModel.noteId
+                action.reminder = viewModel.note.value?.reminder
                 findNavController().navigate(action)
                 return true
             }
