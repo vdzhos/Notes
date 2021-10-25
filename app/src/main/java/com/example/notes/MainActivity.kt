@@ -4,10 +4,7 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
-import android.view.Gravity
-import android.view.MenuItem
-import android.view.View
-import android.view.WindowManager
+import android.view.*
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -99,8 +96,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 navController.navigate(action)
                 println("---------------reminders")
             }
-            R.id.createNewLabel -> {
-                println("---------------createNewLabel")
+            R.id.editLabels -> {
+                NavigationUI.onNavDestinationSelected(item,navController)
             }
             R.id.settings -> {
                 println("---------------Settings")

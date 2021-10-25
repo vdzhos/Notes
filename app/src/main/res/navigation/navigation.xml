@@ -138,4 +138,9 @@
             app:popUpTo="@id/noteDetailsFragment"
             app:popUpToInclusive="true"/>
     </dialog>
+    <fragment
+        android:id="@+id/editLabels"
+        android:name="com.example.notes.editlabels.EditLabelsFragment"
+        android:label="CreateNewLabelFragment"
+        tools:layout="@layout/fragment_create_new_label"/>
 </navigation>

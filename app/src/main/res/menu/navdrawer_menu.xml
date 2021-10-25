@@ -33,7 +33,7 @@
             android:title="Label2" />
 
         <item
-            android:id="@+id/createNewLabel"
+            android:id="@+id/editLabels"
             android:icon="@drawable/ic_baseline_add_24"
             android:title="@string/drawer_create_new_label" />
 
